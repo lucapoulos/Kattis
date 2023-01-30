@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define vi vector<int>
+#define ll long long
+#define um unordered_map
+um<char, int> lci; // Last friend index
+
+class Compare {
+public:
+    bool operator()(char a, char b) {
+        return lci[a] > lci[b];
+    }
+};
+
+int waitTime(priority_queue<char> pq) {
+    int wt = 0;
+    while(pq.top()) {
+        wt += lci[pq.top()] * 5;
+        pq.pop();
+    }
+    return wt;
+}
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t!=0) {
+        lci.clear();
+        int n; // length of line
+        cin >> n;
+        string line;
+        cin >> line;
+        priority_queue<char> pq;
+        priority_queue<char, vector<char>, Compare>pq2;
+        for (int i = 0; i < n; i++) {
+            lci.emplace(pair<char,int>(line[i],i));
+            pq.emplace(line[i]);
+            pq2.emplace(line[i]);
+        }
+        int originalTime = waitTime(pq);
+        for (int i = 0; i < n; i++) {
+            char c = pq.top();
+        }
+    }
+
+    return 0;
+}
